@@ -23,7 +23,7 @@
                         break;
 
                     case 'C':
-                        door.OnDoorClose();
+                        door.OnDoorClose(); // door objekt skal tilføjes
                         break;
 
                     case 'R':
