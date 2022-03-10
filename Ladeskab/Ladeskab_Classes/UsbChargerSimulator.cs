@@ -3,7 +3,7 @@ using System.Timers;
 
 namespace UsbSimulator
 {
-    public class UsbChargerSimulator : IUsbCharger
+    public class UsbChargerSimulator : ICharger
     {
         // Constants
         private const double MaxCurrent = 500.0; // mA
