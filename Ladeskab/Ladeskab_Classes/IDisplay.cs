@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ladeskab_Classes
+namespace DisplaySimulator
 {
-    internal interface IDisplay
+    public interface IDisplay
     {
+        public void Print(string);
     }
 }

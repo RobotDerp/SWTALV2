@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ladeskab_Classes
 {
-    internal class ChangeControl
+    internal class ChargeControl
     {
     }
 }
