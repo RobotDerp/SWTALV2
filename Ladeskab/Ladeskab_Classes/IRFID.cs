@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace RFIDSimulator
+namespace Subject
 {
     public class RFIDEventArgs : EventArgs
     {
@@ -14,7 +14,6 @@ namespace RFIDSimulator
         event EventHandler<RFIDEventArgs> RFIDStateEvent;
 
         int SavedID{ get; set; }
-
 
         void RFIDDetected(int);
     }
