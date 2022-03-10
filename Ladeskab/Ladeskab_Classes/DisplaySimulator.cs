@@ -1,6 +1,6 @@
 ﻿namespace Ladeskab_Classes
 {
-    public class Class1
+    public class DisplaySimulator
     {
 
     }
