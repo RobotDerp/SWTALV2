@@ -23,6 +23,7 @@ namespace Ladeskab
         private IChargeControl _charger;
         private int _oldId;
         private IDoor _door;
+        // Display interface
 
         private string logFile = "logfile.txt"; // Navnet på systemets log-fil
 
