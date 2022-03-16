@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace Ladeskab
+namespace Ladeskab_Classes
 {
     public class LogFile
     {
@@ -18,7 +18,7 @@ namespace Ladeskab
 
             logString.Append("Id: " + _idCounter + " - ");
             logString.Append("Log time: " + DateTime.Now + " - ");
-            logString.Append("Message: " + message);
+            logString.Append("Message: " + message + "\n");
 
             File.WriteAllText("LogOutput.txt", logString.ToString());
             
