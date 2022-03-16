@@ -3,10 +3,24 @@ using Observer;
 
 namespace Subject
 {
-    public interface ISubject
+    public abstract class Subject
     {
-        void Attach(IObserver observer);
-        void Detach(IObserver observer);
-        void Notify();
+        protected List<IObserver> Observers { get; set; }
+
+        protected Subject()
+        {
+            Observers = new List<IObserver>();
+        }
+
+        public void Attach(IObserver observer)
+        {
+            Observers.Add(observer);
+        }
+
+        public void Detach(IObserver observer)
+        {
+            Observers.Remove(observer);
+        }
+        public abstract void Notify();
     }
 }
