@@ -8,21 +8,11 @@ using Subject;
 
 namespace Ladeskab
 {
-    public class RFIDSimulator : IRFID
+    public class RFIDSimulator : Subject, IRFID
     {
         public event EventHandler<RFIDEventArgs>? RFIDStateEvent;
         public int SavedID { get; set; }
         public void RFIDDetected(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Attach(IObserver observer)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Detach(IObserver observer)
         {
             throw new NotImplementedException();
         }
