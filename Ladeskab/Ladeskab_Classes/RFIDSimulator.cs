@@ -8,7 +8,7 @@ using Subject;
 
 namespace Ladeskab
 {
-    public class RFIDSimulator : IRFID, ISubject
+    public class RFIDSimulator : IRFID
     {
         public event EventHandler<RFIDEventArgs>? RFIDStateEvent;
         public int SavedID { get; set; }
