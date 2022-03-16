@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Observer;
 using Subject;
 
 namespace Ladeskab
@@ -16,12 +17,12 @@ namespace Ladeskab
             throw new NotImplementedException();
         }
 
-        public void Attach(IObserver<T> missing_name)
+        public void Attach(IObserver observer)
         {
             throw new NotImplementedException();
         }
 
-        public void Detach(IObserver<T> missing_name)
+        public void Detach(IObserver observer)
         {
             throw new NotImplementedException();
         }

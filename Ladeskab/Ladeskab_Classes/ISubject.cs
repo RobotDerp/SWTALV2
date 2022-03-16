@@ -5,8 +5,8 @@ namespace Subject
 {
     public interface ISubject
     {
-        void Attach(IObserver);
-        void Detach(IObserver);
+        void Attach(IObserver observer);
+        void Detach(IObserver observer);
         void Notify();
     }
 }
