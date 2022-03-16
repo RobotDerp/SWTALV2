@@ -10,13 +10,21 @@ namespace Ladeskab
     {
         public event EventHandler<DoorEventArgs> DoorStateEvent;
 
+        //locked when _locked = 1
         private int _locked;
+
+        //Doorstate = 0 når lukket, =1 når åben
+        
 
         public void OnDoorClose()
         {
-            if (_locked == 0)
+            if (_locked == 0 && DoorState != 0)
             {
                 OnDoorChanged(new OnDoorChanged { DoorState = 0 });
+            }
+            else
+            {
+                throw new InvalidOperationException("Cannot close an already closed door")
             }
         }
 
@@ -26,16 +34,26 @@ namespace Ladeskab
             {
                 OnDoorChanged(new OnDoorChanged { DoorState = 1 });
             }
+            else
+            {
+                throw new InvalidOperationException("Cannot open an already open door")
+            }
         }
 
         public void UnlockDoor()
         {
-            _locked = 1;
+            if (_locked == 0 && DoorState = 0)
+            {
+                _locked = 1;
+            }
         }
 
         public void LockDoor()
         {
-            _locked = 0;
+            if (_locked == 1 && DoorState = 0)
+            {
+                _locked = 0;
+            }
         }
 
         protected virtual void OnDoorChanged(DoorEventArgs e)
