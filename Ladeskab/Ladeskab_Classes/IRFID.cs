@@ -13,8 +13,6 @@ namespace Subject
         // Event triggered on new current value
         event EventHandler<RFIDEventArgs> RFIDStateEvent;
 
-        int SavedID{ get; set; }
-
         void RFIDDetected(int id);
     }
 }

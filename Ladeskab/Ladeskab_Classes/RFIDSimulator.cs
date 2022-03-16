@@ -11,15 +11,16 @@ namespace Ladeskab
     public class RFIDSimulator : Subject, IRFID
     {
         public event EventHandler<RFIDEventArgs>? RFIDStateEvent;
-        public int SavedID { get; set; }
         public void RFIDDetected(int id)
         {
-            throw new NotImplementedException();
-        }
+            RFIDEventArgs e = new RFIDEventArgs() { RFIDState = id };
+            RFIDStateEvent?.Invoke(this, e);
+        }  
 
-        public void Notify()
+        // Don't think this function is needed anymore, since the event does the job
+        public override void Notify()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Notify called on RFIDSimulator");
         }
     }
 }
