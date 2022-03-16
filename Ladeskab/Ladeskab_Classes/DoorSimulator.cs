@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ladeskab
 {
-    public class Door : IDoor, ISubject
+    public class Door : Subject, IDoor
     {
         public event EventHandler<DoorEventArgs> DoorStateEvent;
 
@@ -23,8 +23,13 @@ namespace Ladeskab
             }
             else
             {
-                throw new InvalidOperationException("Cannot close an already closed door")
+                throw new InvalidOperationException("Cannot close an already closed door");
             }
+        }
+
+        public void OnDoorOpen()
+        {
+            throw new NotImplementedException();
         }
 
         public void OnDoor()
@@ -35,7 +40,7 @@ namespace Ladeskab
             }
             else
             {
-                throw new InvalidOperationException("Cannot open an already open door")
+                throw new InvalidOperationException("Cannot open an already open door");
             }
         }
 
@@ -58,6 +63,11 @@ namespace Ladeskab
         protected virtual void OnDoorChanged(DoorEventArgs e)
         {
             DoorStateEvent?.Invoke(this, e);
+        }
+
+        public override void Notify()
+        {
+            throw new NotImplementedException();
         }
     }
 }

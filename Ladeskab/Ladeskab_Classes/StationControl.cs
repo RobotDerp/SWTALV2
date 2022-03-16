@@ -5,7 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Channels;
 using System.Threading.Tasks;
-using Ladeskab.Interfaces;
+using Ladeskab;
+using Subject;
+using UsbSimulator;
 
 namespace Ladeskab
 {
@@ -54,7 +56,7 @@ namespace Ladeskab
                     switch (e.DoorState)
                     {
                         case 0:
-                            throw new InvalidOperationException("Cannot close already closed door - StationControl")
+                            throw new InvalidOperationException("Cannot close already closed door - StationControl");
                             break;
                         case 1:
                             _display.print("Connect phone");
@@ -67,10 +69,11 @@ namespace Ladeskab
                     switch (e.DoorState)
                     {
                         case 0:
-                            throw new InvalidOperationException("Cannot close already closed and locked door - StationControl")
+                            throw new InvalidOperationException(
+                                "Cannot close already closed and locked door - StationControl");
                             break;
                         case 1:
-                            throw new InvalidOperationException("Cannot open locked door - StationControl")
+                            throw new InvalidOperationException("Cannot open locked door - StationControl");
                             break;
                     }
                     break;
@@ -82,7 +85,7 @@ namespace Ladeskab
                             _state = LadeskabState.Available;
                             break;
                         case 1:
-                            throw new InvalidOperationException("Cannot open already open door - StationControl")
+                            throw new InvalidOperationException("Cannot open already open door - StationControl");
                             break;
                     }
                     break;
