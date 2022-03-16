@@ -5,36 +5,34 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using UsbSimulator;
 
-namespace Ladeskab_Classes.Unit.Test
+namespace UsbSimulator.Test
 {
     [TestFixture]
-    public class TestUsbChargerSimulator
+    public class TestDoorSimulator
     {
-        private UsbChargerSimulator _uut;
+        private DoorSimulator _uut;
         [SetUp]
         public void Setup()
         {
-            _uut = new UsbChargerSimulator();
+            _uut = new DoorSimulator();
         }
 
         [Test]
-        public void ctor_IsConnected()
+        public void ctor_DoorStateIsZero()
         {
-            Assert.That(_uut.Connected, Is.True);
+            Assert.That(_uut.DoorState, Is.Zero);
         }
 
         [Test]
-        public void ctor_CurentValueIsZero()
+        public void ctor_LockedIsZero()
         {
-            Assert.That(_uut.CurrentValue, Is.Zero);
+            Assert.That(_uut._locked, Is.Zero);
         }
 
         [Test]
-        public void SimulateDisconnected_ReturnsDisconnected()
+        public void OnDoorClose_StateIsChanged()
         {
-            _uut.SimulateConnected(false);
             Assert.That(_uut.Connected, Is.False);
         }
 

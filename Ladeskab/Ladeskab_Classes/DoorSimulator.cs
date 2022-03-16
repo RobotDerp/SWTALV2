@@ -14,7 +14,6 @@ namespace Ladeskab
         private int _locked;
 
         //Doorstate = 0 når lukket, =1 når åben
-        
 
         public void OnDoorClose()
         {
