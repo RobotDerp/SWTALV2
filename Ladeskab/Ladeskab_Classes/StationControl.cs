@@ -28,14 +28,50 @@ namespace Ladeskab
         // Her mangler flere member variable
         private IDisplay iDisplay;
         private LadeskabState _state;
-        private IChargeControl _charger;
         private int _oldId;
         private IDoor _door;
-        // Display interface
+        private IDisplay _display;
+        private ICharger _charger;
+        private IRFID _rfid;
 
         private string logFile = "logfile.txt"; // Navnet på systemets log-fil
 
-        // Her mangler constructor
+        public StationControl(IDoor door, IDisplay display, ICharger charger, IRFID rfid)
+        {
+            door.DoorStateEvent += HandleDoorEvent;
+            rfid.RFIDStateEvent += RfidDetected;
+            _door = door;
+            _display = display;
+            _charger = charger;
+            _rfid = rfid;
+        }
+
+        private void HandleDoorEvent(object sender, DoorEventArgs e)
+        {
+            switch (_state)
+            {
+                case LadeskabState.Available:
+                    switch (e.DoorState)
+                    {
+                        case 0:
+
+
+                            break;
+                        case 1:
+                            //Kald display, "tilslut telefon"
+                            break;
+
+
+                    }
+
+                    break;
+                case LadeskabState.Locked:
+                    break;
+                case LadeskabState.DoorOpen:
+                    break;
+            }
+
+        }
 
         // Eksempel på event handler for eventet "RFID Detected" fra tilstandsdiagrammet for klassen
         private void RfidDetected(int id)
