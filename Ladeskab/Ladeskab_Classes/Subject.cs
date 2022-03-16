@@ -1,7 +1,7 @@
 ﻿using System;
 using Observer;
 
-namespace Subject
+namespace Ladeskab
 {
     public abstract class Subject
     {
