@@ -1,4 +1,5 @@
 ﻿using System;
+using Observer;
 
 namespace Subject
 {

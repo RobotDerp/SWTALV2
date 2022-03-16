@@ -15,6 +15,6 @@ namespace Subject
 
         int SavedID{ get; set; }
 
-        void RFIDDetected(int);
+        void RFIDDetected(int id);
     }
 }
