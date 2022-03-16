@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DisplaySimulator
+namespace Ladeskab
 {
     public interface IDisplay
     {
-        public void Print(string);
+        public void Print(string x);
     }
 }

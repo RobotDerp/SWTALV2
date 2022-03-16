@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 using Ladeskab.Interfaces;
 
@@ -10,6 +11,12 @@ namespace Ladeskab
 {
     public class StationControl
     {
+        public StationControl(IDisplay Display)
+        {
+            iDisplay = Display;
+        }
+        
+
         // Enum med tilstande ("states") svarende til tilstandsdiagrammet for klassen
         private enum LadeskabState
         {
@@ -19,6 +26,7 @@ namespace Ladeskab
         };
 
         // Her mangler flere member variable
+        private IDisplay iDisplay;
         private LadeskabState _state;
         private IChargeControl _charger;
         private int _oldId;
@@ -46,12 +54,12 @@ namespace Ladeskab
                             writer.WriteLine(DateTime.Now + ": Skab låst med RFID: {0}", id);
                         }
 
-                        Console.WriteLine("Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op.");
+                        iDisplay.Print("Skabet er låst og din telefon lades.Brug dit RFID tag til at låse op.");
                         _state = LadeskabState.Locked;
                     }
                     else
                     {
-                        Console.WriteLine("Din telefon er ikke ordentlig tilsluttet. Prøv igen.");
+                        iDisplay.Print("Din telefon er ikke ordentlig tilsluttet. Prøv igen.");
                     }
 
                     break;
@@ -71,12 +79,12 @@ namespace Ladeskab
                             writer.WriteLine(DateTime.Now + ": Skab låst op med RFID: {0}", id);
                         }
 
-                        Console.WriteLine("Tag din telefon ud af skabet og luk døren");
+                        iDisplay.Print("Tag din telefon ud af skabet og luk døren");
                         _state = LadeskabState.Available;
                     }
                     else
                     {
-                        Console.WriteLine("Forkert RFID tag");
+                        iDisplay.Print("Forkert RFID tag");
                     }
 
                     break;
