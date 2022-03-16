@@ -54,20 +54,37 @@ namespace Ladeskab
                     switch (e.DoorState)
                     {
                         case 0:
-
-
+                            throw new InvalidOperationException("Cannot close already closed door - StationControl")
                             break;
                         case 1:
-                            //Kald display, "tilslut telefon"
+                            _display.print("Connect phone");
+                            _state = LadeskabState.DoorOpen;
                             break;
-
-
                     }
 
                     break;
                 case LadeskabState.Locked:
+                    switch (e.DoorState)
+                    {
+                        case 0:
+                            throw new InvalidOperationException("Cannot close already closed and locked door - StationControl")
+                            break;
+                        case 1:
+                            throw new InvalidOperationException("Cannot open locked door - StationControl")
+                            break;
+                    }
                     break;
                 case LadeskabState.DoorOpen:
+                    switch (e.DoorState)
+                    {
+                        case 0:
+                            _display.print("Load RFID");
+                            _state = LadeskabState.Available;
+                            break;
+                        case 1:
+                            throw new InvalidOperationException("Cannot open already open door - StationControl")
+                            break;
+                    }
                     break;
             }
 
