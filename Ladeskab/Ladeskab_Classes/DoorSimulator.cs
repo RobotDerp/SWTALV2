@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Ladeskab;
 
-namespace Ladeskab
+namespace Ladeskab_Classes
 {
-    public class Door : IDoor
+    public class DoorSimulator : IDoor
     {
         public event EventHandler<DoorEventArgs> DoorStateEvent;
 

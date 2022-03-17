@@ -1,12 +1,10 @@
-﻿using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System;
 using System.Threading;
-using System.Threading.Tasks;
+using Ladeskab;
+using LadeSkab_Classes;
+using NUnit.Framework;
 
-namespace Ladeskab.Test
+namespace Ladeskab_Classes.Unit.Test
 {
     [TestFixture]
     public class TestDoorSimulator
@@ -52,13 +50,12 @@ namespace Ladeskab.Test
             Assert.Throws<InvalidOperationException>( () => _uut.OnDoorOpen());
         }
 
-        public void OnDoorOpen_LockedClosedDoor_StateIsChanged()
+        public void OnDoorClose_UnlockedClosedDoor_StateIsChange()
         {
-            _uut.SimulateLocked();
 
-            _uut.OnDoorOpen();
+            _uut.OnDoorClose();
 
-            Assert.That(_uut.DoorState, Is.EqualTo.(1);
+            Assert.That(_uut.DoorState, Is.EqualTo(1));
         }
 
         [Test]
