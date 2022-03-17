@@ -15,25 +15,34 @@ namespace Ladeskab_Classes.Unit.Test
         [SetUp]
         public void Setup()
         {
-            charger = new UsbChargerSimulator();
+            charger = Substitute.For<ICharger>;
             uut = new ChargeControl(charger);
         }
 
-        [Test]
-        public void StartCharge_PrintCalled_WriteToConsole()
+        [TestCase(25)]
+        [TestCase(400)]
+        [TestCase(0)]
+        public void CurrentChanged_DifferentArguments_CurrentIsCorrect(double newCurrent)
         {
-
-
-
-            var stringWriter = new StringWriter();
-            Console.SetOut(stringWriter);
-
-            // Act
-            uut.Print("Charging has started \r\n");
-
-            // Assert
-            var output = stringWriter.ToString();
-            Assert.That(output, Is.EqualTo("Charging has started \r\n"));
+            charger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs() { Current = newCurrent });
+            Assert.That(uut.CurrentValue, Is.EqualTo(newCurrent));
         }
-    }
-}
+
+//        [Test]
+//        public void StartCharge_StartChargeOnSim_StartChargeCalledOnSim()
+//        {
+
+
+
+//            var stringWriter = new StringWriter();
+//            Console.SetOut(stringWriter);
+
+//            // Act
+//            uut.Print("Charging has started \r\n");
+
+//            // Assert
+//            var output = stringWriter.ToString();
+//            Assert.That(output, Is.EqualTo("Charging has started \r\n"));
+//        }
+//    }
+//}
