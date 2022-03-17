@@ -3,25 +3,27 @@ using System.IO;
 using Ladeskab;
 using NUnit.Framework;
 using Subject;
+using UsbSimulator;
 
 namespace Ladeskab_Classes.Unit.Test
 {
-    public class TestDisplaySimulator
+    public class TestChargeControl
     {
-        private DisplaySimulator uut;
-        
+        private ChargeControl uut;
+        private UsbChargerSimulator charger; 
 
         [SetUp]
         public void Setup()
         {
-            uut = new DisplaySimulator();
+            charger = new UsbChargerSimulator();
+            uut = new ChargeControl(charger);
         }
 
         [Test]
-        public void Print_PrintCalled_WriteToConsole()
+        public void StartCharge_PrintCalled_WriteToConsole()
         {
 
-            
+
 
             var stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
