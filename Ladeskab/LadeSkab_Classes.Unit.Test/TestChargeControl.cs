@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using Ladeskab;
+using NSubstitute;
 using NUnit.Framework;
 using Subject;
 using UsbSimulator;
@@ -10,12 +11,12 @@ namespace Ladeskab_Classes.Unit.Test
     public class TestChargeControl
     {
         private ChargeControl uut;
-        private UsbChargerSimulator charger; 
+        private ICharger charger; 
 
         [SetUp]
         public void Setup()
         {
-            charger = Substitute.For<ICharger>;
+            charger = Substitute.For<ICharger>();
             uut = new ChargeControl(charger);
         }
 
@@ -44,5 +45,5 @@ namespace Ladeskab_Classes.Unit.Test
 //            var output = stringWriter.ToString();
 //            Assert.That(output, Is.EqualTo("Charging has started \r\n"));
 //        }
-//    }
-//}
+    }
+}
