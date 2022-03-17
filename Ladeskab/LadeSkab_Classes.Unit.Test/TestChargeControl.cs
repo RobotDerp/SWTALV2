@@ -8,6 +8,7 @@ using UsbSimulator;
 
 namespace Ladeskab_Classes.Unit.Test
 {
+    [TestFixture]
     public class TestChargeControl
     {
         private ChargeControl uut;

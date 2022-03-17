@@ -4,6 +4,7 @@ using Subject;
 
 namespace Ladeskab_Classes.Unit.Test
 {
+    [TestFixture]
     public class TestRFIDSimulator
     {
         private RFIDSimulator _uut;
