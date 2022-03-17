@@ -94,7 +94,7 @@ namespace Ladeskab
         }
 
         // Eksempel på event handler for eventet "RFID Detected" fra tilstandsdiagrammet for klassen
-        private void RfidDetected(int id)
+        private void RfidDetected(object sender, RFIDEventArgs e)
         {
             switch (_state)
             {
