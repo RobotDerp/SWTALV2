@@ -32,14 +32,13 @@ namespace Ladeskab_Classes
 
         public void FakeAddLogEntry(string message, List<string> logList)
         {
-            logList = new List<string>();
             StringBuilder logString = new StringBuilder();
 
             logString.Append("Id: " + IdCounter + " - ");
             logString.Append("Log time: " + DateTime.Now + " - ");
             logString.Append("Message: " + message + "\n");
 
-            logList.Add(message);
+            logList.Add(logString.ToString());
 
             IdCounter++;
         }
