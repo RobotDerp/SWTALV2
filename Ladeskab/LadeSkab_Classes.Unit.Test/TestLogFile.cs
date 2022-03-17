@@ -37,15 +37,14 @@ namespace LadeSkab_Classes.Unit.Test
         }
 
         [Test]
-        public void LogStringIsAString()
+        public void LogFileWritesStringToTarget()
         {
-            
-        }
+            string message = "Testing log writing to test list";
+            List<string> logFileListTest = new List<string>();
 
-        [Test]
-        public void LogFileExistsOrIsCreatedOnNewLogEntry()
-        {
+            _uut.FakeAddLogEntry(message, logFileListTest);
 
+            Assert.That(logFileListTest, Is.Not.Empty);
         }
 
         /*
