@@ -18,8 +18,19 @@ namespace LadeSkab_Classes.Unit.Test
         {
             _uut = new LogFile();
         }
-        
-        [Test]
 
+        [Test]
+        public void ctor_CounterIsZero()
+        {
+            Assert.That(_uut.IdCounter, Is.Zero);
+        }
+
+        /*
+         * bekræfter at counter 0 når objektet laves
+         * bekræfter at counter er talt op
+         * bekræfter at logString er en string
+         * bekræfter at der laves en ny fil
+         * 
+         */
     }
 }
