@@ -17,15 +17,16 @@ namespace Ladeskab
             set { CurrentValue = value; }
         }
 
+        private IDisplay display;
         public bool Connected { get; }
         public void StartCharge()
         {
-            throw new NotImplementedException();
+            display.Print("Charging has started");
         }
 
         public void StopCharge()
         {
-            throw new NotImplementedException();
+            display.Print("Charging has stopped");
         }
 
 
