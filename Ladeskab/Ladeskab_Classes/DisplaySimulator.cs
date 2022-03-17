@@ -7,7 +7,6 @@ namespace Ladeskab
         public void Print(string print)
         {
             Console.WriteLine(print);
-
         }
 
     }
