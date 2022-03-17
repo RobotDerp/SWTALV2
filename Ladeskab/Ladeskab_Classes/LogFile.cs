@@ -32,6 +32,8 @@ namespace Ladeskab_Classes
 
         public void FakeAddLogEntry(string message, List<string> logList)
         {
+            // Metoden er en fake og er lavet for testing-purpose
+            
             StringBuilder logString = new StringBuilder();
 
             logString.Append("Id: " + IdCounter + " - ");
