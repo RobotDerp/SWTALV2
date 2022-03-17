@@ -17,7 +17,6 @@ namespace Ladeskab
         {
             iDisplay = Display;
         }
-        
 
         // Enum med tilstande ("states") svarende til tilstandsdiagrammet for klassen
         private enum LadeskabState
@@ -104,10 +103,10 @@ namespace Ladeskab
                     {
                         _door.LockDoor();
                         _charger.StartCharge();
-                        _oldId = id;
+                        _oldId = e.RFID_ID;
                         using (var writer = File.AppendText(logFile))
                         {
-                            writer.WriteLine(DateTime.Now + ": Skab låst med RFID: {0}", id);
+                            writer.WriteLine(DateTime.Now + ": Skab låst med RFID: {0}", e.RFID_ID);
                         }
 
                         iDisplay.Print("Skabet er låst og din telefon lades.Brug dit RFID tag til at låse op.");
@@ -126,13 +125,13 @@ namespace Ladeskab
 
                 case LadeskabState.Locked:
                     // Check for correct ID
-                    if (id == _oldId)
+                    if (e.RFID_ID == _oldId)
                     {
                         _charger.StopCharge();
                         _door.UnlockDoor();
                         using (var writer = File.AppendText(logFile))
                         {
-                            writer.WriteLine(DateTime.Now + ": Skab låst op med RFID: {0}", id);
+                            writer.WriteLine(DateTime.Now + ": Skab låst op med RFID: {0}", e.RFID_ID);
                         }
 
                         iDisplay.Print("Tag din telefon ud af skabet og luk døren");

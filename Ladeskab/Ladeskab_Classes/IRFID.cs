@@ -5,7 +5,7 @@ namespace Subject
     public class RFIDEventArgs : EventArgs
     {
         // Value in mA (milliAmpere)
-        public int RFIDState { set; get; }
+        public int RFID_ID { set; get; }
     }
 
     public interface IRFID
