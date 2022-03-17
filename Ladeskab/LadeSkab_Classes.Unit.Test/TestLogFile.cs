@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using Ladeskab_Classes;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,10 @@ namespace LadeSkab_Classes.Unit.Test
         private LogFile _uut;
         
         [SetUp]
-        _uut = new LogFile
+        public void Setup()
+        {
+            _uut = new LogFile();
+        }
         
         [Test]
 
