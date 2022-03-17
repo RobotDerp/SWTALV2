@@ -10,19 +10,24 @@ namespace Ladeskab_Classes
 {
     public class LogFile
     {
-        long _idCounter = 0;
+        public long IdCounter { set; get; }
+
+        public LogFile()
+        {
+            IdCounter = 0;
+        }
 
         public void AddLogEntry(string message)
         {
             StringBuilder logString = new StringBuilder();
 
-            logString.Append("Id: " + _idCounter + " - ");
+            logString.Append("Id: " + IdCounter + " - ");
             logString.Append("Log time: " + DateTime.Now + " - ");
             logString.Append("Message: " + message + "\n");
 
             File.WriteAllText("LogOutput.txt", logString.ToString());
             
-            _idCounter++;
+            IdCounter++;
         }
     }
 }
