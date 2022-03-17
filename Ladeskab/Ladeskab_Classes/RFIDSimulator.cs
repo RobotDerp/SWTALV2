@@ -12,7 +12,7 @@ namespace Ladeskab
         public event EventHandler<RFIDEventArgs>? RFIDStateEvent;
         public void RFIDDetected(int id)
         {
-            RFIDEventArgs e = new RFIDEventArgs() { RFIDState = id };
+            RFIDEventArgs e = new RFIDEventArgs() { RFID_ID = id };
             RFIDStateEvent?.Invoke(this, e);
         }
     }
