@@ -21,6 +21,7 @@ namespace Ladeskab_Classes.Unit.Test
             uut = new ChargeControl(charger);
         }
 
+        // Udkommenteret fordi den resulterede i Stack Overflow.
         //[TestCase(25)]
         //[TestCase(400)]
         //[TestCase(0)]
