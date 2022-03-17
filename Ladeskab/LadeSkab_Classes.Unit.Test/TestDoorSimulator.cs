@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace UsbSimulator.Test
+namespace Ladeskab.Test
 {
     [TestFixture]
     public class TestDoorSimulator
@@ -16,24 +16,49 @@ namespace UsbSimulator.Test
         public void Setup()
         {
             _uut = new DoorSimulator();
+            _uut.SimulateUnlocked();
         }
 
         [Test]
         public void ctor_DoorStateIsZero()
         {
-            Assert.That(_uut.DoorState, Is.Zero);
+            Assert.That(_uut.DoorState, Is.EqualTo.0);
         }
 
         [Test]
-        public void ctor_LockedIsZero()
+        public void OnDoorOpen_UnlockedClosedDoor_StateIsChanged()
         {
-            Assert.That(_uut._locked, Is.Zero);
+            _uut.OnDoorOpen();
+
+            Assert.That(_uut.DoorState, Is.EqualTo.1);
         }
 
         [Test]
-        public void OnDoorClose_StateIsChanged()
+        public void OnDoorOpen_LockedClosedDoor_StateIsChanged()
         {
-            Assert.That(_uut.Connected, Is.False);
+            _uut.SimulateLocked();
+
+            _uut.OnDoorOpen();
+
+            Assert.That(_uut.DoorState, Is.EqualTo.1);
+        }
+
+        public void OnDoorOpen_OpenDoor_StateIsChanged()
+        {
+            _uut.DoorState = 1;
+
+            _uut.OnDoorOpen();
+
+            Assert.That(_uut.DoorState, Is.EqualTo.1);
+        }
+
+        public void OnDoorOpen_LockedClosedDoor_StateIsChanged()
+        {
+            _uut.SimulateLocked();
+
+            _uut.OnDoorOpen();
+
+            Assert.That(_uut.DoorState, Is.EqualTo.1);
         }
 
         [Test]

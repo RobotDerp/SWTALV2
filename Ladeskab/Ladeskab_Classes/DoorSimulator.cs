@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ladeskab
 {
-    public class Door : Subject, IDoor
+    public class Door : IDoor
     {
         public event EventHandler<DoorEventArgs> DoorStateEvent;
 
@@ -14,6 +14,16 @@ namespace Ladeskab
         private int _locked;
 
         //Doorstate = 0 når lukket, =1 når åben
+
+        public void SimulateLocked()
+        {
+            _locked = 1;
+        }
+
+        public void SimulateUnlocked()
+        {
+            _locked = 0;
+        }
 
         public void OnDoorClose()
         {
