@@ -74,10 +74,5 @@ namespace Ladeskab
         {
             DoorStateEvent?.Invoke(this, e);
         }
-
-        public override void Notify()
-        {
-            throw new NotImplementedException();
-        }
     }
 }
