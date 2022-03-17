@@ -43,6 +43,7 @@ namespace Ladeskab.Test
             Assert.That(_uut.DoorState, Is.EqualTo(1));
         }
 
+        [Test]
         public void OnDoorOpen_OpenDoor_ExceptionInvalidOperationThrown()
         {
             _uut.DoorState = 1;
@@ -52,13 +53,14 @@ namespace Ladeskab.Test
             Assert.Throws<InvalidOperationException>( () => _uut.OnDoorOpen());
         }
 
+        [Test]
         public void OnDoorOpen_LockedClosedDoor_StateIsChanged()
         {
             _uut.SimulateLocked();
 
             _uut.OnDoorOpen();
 
-            Assert.That(_uut.DoorState, Is.EqualTo.(1);
+            Assert.That(_uut.DoorState, Is.EqualTo(1));
         }
 
         [Test]
