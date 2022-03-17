@@ -22,7 +22,7 @@ namespace Ladeskab.Test
         [Test]
         public void ctor_DoorStateIsZero()
         {
-            Assert.That(_uut.DoorState, Is.EqualTo.0);
+            Assert.That(_uut.DoorState, Is.EqualTo(0));
         }
 
         [Test]
@@ -30,7 +30,7 @@ namespace Ladeskab.Test
         {
             _uut.OnDoorOpen();
 
-            Assert.That(_uut.DoorState, Is.EqualTo.1);
+            Assert.That(_uut.DoorState, Is.EqualTo(1));
         }
 
         [Test]
@@ -49,7 +49,7 @@ namespace Ladeskab.Test
 
             _uut.OnDoorOpen();
 
-            Assert.That(_uut.DoorState, Is.EqualTo.1);
+            Assert.That(_uut.DoorState, Is.EqualTo(1));
         }
 
         public void OnDoorOpen_LockedClosedDoor_StateIsChanged()
@@ -58,7 +58,7 @@ namespace Ladeskab.Test
 
             _uut.OnDoorOpen();
 
-            Assert.That(_uut.DoorState, Is.EqualTo.1);
+            Assert.That(_uut.DoorState, Is.EqualTo(1=));
         }
 
         [Test]
