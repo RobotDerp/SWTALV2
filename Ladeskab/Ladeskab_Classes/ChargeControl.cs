@@ -11,6 +11,8 @@ namespace Ladeskab
     public class ChargeControl : ICharger
     {
         public event EventHandler<CurrentEventArgs>? CurrentValueEvent;
+
+        private UsbChargerSimulator usbCharger = new UsbChargerSimulator();
         public double CurrentValue
         {
             get { return CurrentValue;}
@@ -21,12 +23,12 @@ namespace Ladeskab
         public bool Connected { get; }
         public void StartCharge()
         {
-            display.Print("Charging has started");
+            usbCharger.StartCharge();
         }
 
         public void StopCharge()
         {
-            display.Print("Charging has stopped");
+            usbCharger.StopCharge();
         }
 
 
