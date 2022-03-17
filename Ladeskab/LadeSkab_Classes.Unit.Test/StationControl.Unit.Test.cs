@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Channels;
 using System.Threading.Tasks;
 using Ladeskab;
+using NSubstitute;
 using NUnit.Framework;
 
 namespace Ladeskab_Classes.Unit.Test
@@ -18,7 +19,7 @@ namespace Ladeskab_Classes.Unit.Test
         [SetUp]
         public void SetUp()
         {
-            _display = Subsitute.For<IDisplay>();
+            _display = Substitute.For<IDisplay>();
             _uut = new StationControl(_display);
         }
 
