@@ -34,7 +34,7 @@ namespace Ladeskab_Classes.Unit.Test
         public void RFIDDetected_RFIDIdRead_CorrectEventArgsReceived()
         {
             _uut.RFIDDetected(5);
-            Assert.That(_receivedEventArgs.RFIDState, Is.EqualTo(5));
+            Assert.That(_receivedEventArgs.RFID_ID, Is.EqualTo(5));
         }
     }
 }

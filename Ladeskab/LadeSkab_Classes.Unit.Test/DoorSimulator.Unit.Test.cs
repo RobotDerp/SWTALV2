@@ -41,6 +41,7 @@ namespace Ladeskab_Classes.Unit.Test
             Assert.That(_uut.DoorState, Is.EqualTo(1));
         }
 
+        [Test]
         public void OnDoorOpen_OpenDoor_ExceptionInvalidOperationThrown()
         {
             _uut.DoorState = 1;
