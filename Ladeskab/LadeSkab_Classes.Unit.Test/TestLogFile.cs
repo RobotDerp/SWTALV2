@@ -25,9 +25,30 @@ namespace LadeSkab_Classes.Unit.Test
             Assert.That(_uut.IdCounter, Is.Zero);
         }
 
+        [Test]
+        public void CounterIsIncrementedAfterLogEntry()
+        {
+            long counterValueStorage = _uut.IdCounter;
+            string logMessage = "Testing Log Message";
+
+            _uut.AddLogEntry(logMessage);
+
+            Assert.That(_uut.IdCounter, Is.EqualTo(counterValueStorage + 1));
+        }
+
+        [Test]
+        public void LogStringIsAString()
+        {
+            
+        }
+
+        [Test]
+        public void LogFileExistsOrIsCreatedOnNewLogEntry()
+        {
+
+        }
+
         /*
-         * bekræfter at counter 0 når objektet laves
-         * bekræfter at counter er talt op
          * bekræfter at logString er en string
          * bekræfter at der laves en ny fil
          * 

@@ -13,6 +13,9 @@ namespace Ladeskab
         //locked when _locked = 1
         private int _locked;
 
+
+            public int DoorState { set; get; }
+
         //Doorstate = 0 når lukket, =1 når åben
 
         public void SimulateLocked()
@@ -29,7 +32,7 @@ namespace Ladeskab
         {
             if (_locked == 0 && DoorState != 0)
             {
-                OnDoorChanged(new OnDoorChanged { DoorState = 0 });
+                OnDoorChanged(new DoorEventArgs() { DoorState = 0 });
             }
             else
             {
@@ -46,7 +49,7 @@ namespace Ladeskab
         {
             if (_locked == 0)
             {
-                OnDoorChanged(new OnDoorChanged { DoorState = 1 });
+                OnDoorChanged(new DoorEventArgs() { DoorState = 1 });
             }
             else
             {
@@ -56,7 +59,7 @@ namespace Ladeskab
 
         public void UnlockDoor()
         {
-            if (_locked == 0 && DoorState = 0)
+            if (_locked == 0 && DoorState == 0)
             {
                 _locked = 1;
             }
@@ -64,15 +67,16 @@ namespace Ladeskab
 
         public void LockDoor()
         {
-            if (_locked == 1 && DoorState = 0)
+            if (_locked == 1 && DoorState == 0)
             {
                 _locked = 0;
             }
         }
 
-        protected virtual void OnDoorChanged(DoorEventArgs e)
+        public void OnDoorChanged(DoorEventArgs e)
         {
             DoorStateEvent?.Invoke(this, e);
         }
+
     }
 }
