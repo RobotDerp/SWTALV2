@@ -15,9 +15,14 @@ namespace Ladeskab_Classes
         private int _locked;
 
 
-            public int DoorState { set; get; }
+        public int LocalDoorState { set; get; }
 
         //Doorstate = 0 når lukket, =1 når åben
+
+        public int GetLocked()
+        {
+            return _locked;
+        }
 
         public void SimulateLocked()
         {
@@ -31,8 +36,9 @@ namespace Ladeskab_Classes
 
         public void OnDoorClose()
         {
-            if (_locked == 0 && DoorState != 0)
+            if (_locked == 0 && LocalDoorState == 1)
             {
+                LocalDoorState = 0;
                 OnDoorChanged(new DoorEventArgs() { DoorState = 0 });
             }
             else
@@ -43,13 +49,9 @@ namespace Ladeskab_Classes
 
         public void OnDoorOpen()
         {
-            throw new NotImplementedException();
-        }
-
-        public void OnDoor()
-        {
-            if (_locked == 0)
+            if (_locked == 0 && LocalDoorState==0)
             {
+                LocalDoorState = 1;
                 OnDoorChanged(new DoorEventArgs() { DoorState = 1 });
             }
             else
@@ -60,17 +62,25 @@ namespace Ladeskab_Classes
 
         public void UnlockDoor()
         {
-            if (_locked == 0 && DoorState == 0)
+            if (_locked == 1 && LocalDoorState == 0)
             {
-                _locked = 1;
+                _locked = 0;
+            }
+            else
+            {
+                throw new InvalidOperationException("Cannot unlock an already unlocked door");
             }
         }
 
         public void LockDoor()
         {
-            if (_locked == 1 && DoorState == 0)
+            if (_locked == 0 && LocalDoorState == 0)
             {
-                _locked = 0;
+                _locked = 1;
+            }
+            else
+            {
+                throw new InvalidOperationException("Cannot lock an already locked door");
             }
         }
 
