@@ -32,13 +32,11 @@ namespace Ladeskab_Classes.Unit.Test
         }
 
         [Test]
-        public void OnDoorOpen_LockedClosedDoor_StateIsChanged()
+        public void OnDoorOpen_LockedClosedDoor_ExceptionInvalidOperationThrown()
         {
             _uut.SimulateLocked();
 
-            _uut.OnDoorOpen();
-
-            Assert.That(_uut.DoorState, Is.EqualTo(1));
+            Assert.Throws<InvalidOperationException>(() => _uut.OnDoorOpen());
         }
 
         [Test]
@@ -46,214 +44,22 @@ namespace Ladeskab_Classes.Unit.Test
         {
             _uut.DoorState = 1;
 
-            _uut.OnDoorOpen();
-
             Assert.Throws<InvalidOperationException>( () => _uut.OnDoorOpen());
         }
 
-        public void OnDoorClose_UnlockedClosedDoor_StateIsChange()
+        public void OnDoorClose_UnlockedClosedDoor_ExceptionInvalidOperationThrown()
         {
-
-            _uut.OnDoorClose();
-
-            Assert.That(_uut.DoorState, Is.EqualTo(1));
+            Assert.Throws<InvalidOperationException>(() => _uut.OnDoorClose());
         }
-
-        [Test]
-        public void Started_WaitSomeTime_ReceivedSeveralValues()
+        public void OnDoorClose_LockedClosedDoor_ExceptionInvalidOperationThrown()
         {
-            int numValues = 0;
-            _uut.CurrentValueEvent += (o, args) => numValues++;
-
-            _uut.StartCharge();
-
-            System.Threading.Thread.Sleep(1100);
-
-            Assert.That(numValues, Is.GreaterThan(4));
+            _uut.SimulateLocked();
+            Assert.Throws<InvalidOperationException>(() => _uut.OnDoorClose());
         }
-
-        [Test]
-        public void Started_WaitSomeTime_ReceivedChangedValue()
+        public void OnDoorClose_OpenDoor_DoorStateChangedTo0()
         {
-            double lastValue = 1000;
-            _uut.CurrentValueEvent += (o, args) => lastValue = args.Current;
-
-            _uut.StartCharge();
-
-            System.Threading.Thread.Sleep(300);
-
-            Assert.That(lastValue, Is.LessThan(500.0));
+            _uut.DoorState = 1;
+            Assert.That(_uut.DoorState, Is.EqualTo(0));
         }
-
-        [Test]
-        public void StartedNoEventReceiver_WaitSomeTime_PropertyChangedValue()
-        {
-            _uut.StartCharge();
-
-            System.Threading.Thread.Sleep(300);
-
-            Assert.That(_uut.CurrentValue, Is.LessThan(500.0));
-        }
-
-        [Test]
-        public void Started_WaitSomeTime_PropertyMatchesReceivedValue()
-        {
-            double lastValue = 1000;
-            _uut.CurrentValueEvent += (o, args) => lastValue = args.Current;
-
-            _uut.StartCharge();
-
-            System.Threading.Thread.Sleep(1100);
-
-            Assert.That(lastValue, Is.EqualTo(_uut.CurrentValue));
-        }
-
-
-        [Test]
-        public void Started_SimulateOverload_ReceivesHighValue()
-        {
-            ManualResetEvent pause = new ManualResetEvent(false);
-            double lastValue = 0;
-
-            _uut.CurrentValueEvent += (o, args) =>
-            {
-                lastValue = args.Current;
-                pause.Set();
-            };
-
-            // Start
-            _uut.StartCharge();
-
-            // Next value should be high
-            _uut.SimulateOverload(true);
-
-            // Reset event
-            pause.Reset();
-
-            // Wait for next tick, should send overloaded value
-            pause.WaitOne(300);
-
-            Assert.That(lastValue, Is.GreaterThan(500.0));
-        }
-
-        [Test]
-        public void Started_SimulateDisconnected_ReceivesZero()
-        {
-            ManualResetEvent pause = new ManualResetEvent(false);
-            double lastValue = 1000;
-
-            _uut.CurrentValueEvent += (o, args) =>
-            {
-                lastValue = args.Current;
-                pause.Set();
-            };
-
-
-            // Start
-            _uut.StartCharge();
-
-            // Next value should be zero
-            _uut.SimulateConnected(false);
-
-            // Reset event
-            pause.Reset();
-
-            // Wait for next tick, should send disconnected value
-            pause.WaitOne(300);
-
-            Assert.That(lastValue, Is.Zero);
-        }
-
-        [Test]
-        public void SimulateOverload_Start_ReceivesHighValueImmediately()
-        {
-            double lastValue = 0;
-
-            _uut.CurrentValueEvent += (o, args) =>
-            {
-                lastValue = args.Current;
-            };
-
-            // First value should be high
-            _uut.SimulateOverload(true);
-
-            // Start
-            _uut.StartCharge();
-
-            // Should not wait for first tick, should send overload immediately
-
-            Assert.That(lastValue, Is.GreaterThan(500.0));
-        }
-
-        [Test]
-        public void SimulateDisconnected_Start_ReceivesZeroValueImmediately()
-        {
-            double lastValue = 1000;
-
-            _uut.CurrentValueEvent += (o, args) =>
-            {
-                lastValue = args.Current;
-            };
-
-            // First value should be high
-            _uut.SimulateConnected(false);
-
-            // Start
-            _uut.StartCharge();
-
-            // Should not wait for first tick, should send zero immediately
-
-            Assert.That(lastValue, Is.Zero);
-        }
-
-        [Test]
-        public void StopCharge_IsCharging_ReceivesZeroValue()
-        {
-            double lastValue = 1000;
-            _uut.CurrentValueEvent += (o, args) => lastValue = args.Current;
-
-            _uut.StartCharge();
-
-            System.Threading.Thread.Sleep(300);
-
-            _uut.StopCharge();
-
-            Assert.That(lastValue, Is.EqualTo(0.0));
-        }
-
-        [Test]
-        public void StopCharge_IsCharging_PropertyIsZero()
-        {
-            _uut.StartCharge();
-
-            System.Threading.Thread.Sleep(300);
-
-            _uut.StopCharge();
-
-            Assert.That(_uut.CurrentValue, Is.EqualTo(0.0));
-        }
-
-        [Test]
-        public void StopCharge_IsCharging_ReceivesNoMoreValues()
-        {
-            double lastValue = 1000;
-            _uut.CurrentValueEvent += (o, args) => lastValue = args.Current;
-
-            _uut.StartCharge();
-
-            System.Threading.Thread.Sleep(300);
-
-            _uut.StopCharge();
-            lastValue = 1000;
-
-            // Wait for a tick
-            System.Threading.Thread.Sleep(300);
-
-            // No new value received
-            Assert.That(lastValue, Is.EqualTo(1000.0));
-        }
-
-
-
     }
 }

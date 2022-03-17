@@ -29,7 +29,7 @@ namespace Ladeskab_Classes.Unit.Test
             Console.SetOut(stringWriter);
 
             // Act
-            uut.Print("Charging has started \r\n");
+            //uut.Print("Charging has started \r\n");
 
             // Assert
             var output = stringWriter.ToString();
