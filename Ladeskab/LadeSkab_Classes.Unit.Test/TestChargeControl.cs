@@ -21,14 +21,14 @@ namespace Ladeskab_Classes.Unit.Test
             uut = new ChargeControl(charger);
         }
 
-        [TestCase(25)]
-        [TestCase(400)]
-        [TestCase(0)]
-        public void CurrentChanged_DifferentArguments_CurrentIsCorrect(double newCurrent)
-        {
-            charger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs() { Current = newCurrent });
-            Assert.That(uut.CurrentValue, Is.EqualTo(newCurrent));
-        }
+        //[TestCase(25)]
+        //[TestCase(400)]
+        //[TestCase(0)]
+        //public void CurrentChanged_DifferentArguments_CurrentIsCorrect(double newCurrent)
+        //{
+        //    charger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs() { Current = newCurrent });
+        //    Assert.That(uut.CurrentValue, Is.EqualTo(newCurrent));
+        //}
 
 //        [Test]
 //        public void StartCharge_StartChargeOnSim_StartChargeCalledOnSim()
