@@ -58,7 +58,7 @@ namespace Ladeskab.Test
 
             _uut.OnDoorOpen();
 
-            Assert.That(_uut.DoorState, Is.EqualTo.1);
+            Assert.That(_uut.DoorState, Is.EqualTo.(1);
         }
 
         [Test]
