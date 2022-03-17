@@ -14,7 +14,7 @@ namespace UsbSimulator
 
         public event EventHandler<CurrentEventArgs> CurrentValueEvent;
 
-        public double CurrentValue { get; private set; }
+        public double CurrentValue { get; set; }
 
         public bool Connected { get; private set; }
 

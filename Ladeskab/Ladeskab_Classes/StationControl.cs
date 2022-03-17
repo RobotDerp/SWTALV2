@@ -59,7 +59,7 @@ namespace Ladeskab
                             throw new InvalidOperationException("Cannot close already closed door - StationControl");
                             break;
                         case 1:
-                            _display.print("Connect phone");
+                            _display.Print("Connect phone");
                             _state = LadeskabState.DoorOpen;
                             break;
                     }
@@ -81,7 +81,7 @@ namespace Ladeskab
                     switch (e.DoorState)
                     {
                         case 0:
-                            _display.print("Load RFID");
+                            _display.Print("Load RFID");
                             _state = LadeskabState.Available;
                             break;
                         case 1:
