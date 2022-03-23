@@ -60,15 +60,16 @@ namespace Ladeskab
 
                     break;
                 case LadeskabState.Locked:
-                    switch (e.DoorState)
+                    string errorMsg;
+                    if (e.DoorState == 0)
                     {
-                        case 0:
-                            throw new InvalidOperationException(
-                                "Cannot close already closed and locked door - StationControl");
-                        case 1:
-                            throw new InvalidOperationException("Cannot open locked door - StationControl");
+                        errorMsg = "Cannot close already closed and locked door - StationControl";
                     }
-                    break;
+                    else
+                    {
+                        errorMsg = "Cannot open locked door - StationControl";
+                    }
+                    throw new InvalidOperationException(errorMsg);
                 case LadeskabState.DoorOpen:
                     switch (e.DoorState)
                     {
