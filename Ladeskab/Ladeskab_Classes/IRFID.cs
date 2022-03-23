@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Subject
+namespace Ladeskab
 {
     public class RFIDEventArgs : EventArgs
     {
