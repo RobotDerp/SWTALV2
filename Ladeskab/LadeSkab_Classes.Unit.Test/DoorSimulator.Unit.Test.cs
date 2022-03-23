@@ -137,5 +137,6 @@ namespace Ladeskab_Classes.Unit.Test
             _uut = null;
             Assert.Throws<NullReferenceException>(() => _uut.OnDoorChanged(_doorEventArgs));
         }
+
     }
 }
