@@ -147,7 +147,7 @@ namespace Ladeskab_Classes.Unit.Test
         {
             //DoorSimulator doorWithNoSubs = new DoorSimulator();
             _uut.DoorStateEvent -= _doorEventHandler;
-            Assert.Throws<NullReferenceException>(() => _uut.OnDoorChanged(new DoorEventArgs() {DoorState = 1}));
+            Assert.DoesNotThrow(() => _uut.OnDoorChanged(new DoorEventArgs() {DoorState = 1}));
         }
 
     }
