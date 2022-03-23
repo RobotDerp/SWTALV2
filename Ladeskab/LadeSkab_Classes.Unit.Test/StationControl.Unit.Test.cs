@@ -26,7 +26,7 @@ namespace Ladeskab_Classes.Unit.Test
         [Test]
         public void test1()
         {
-
+            Assert.That(true, Is.EqualTo(true));
         }
     }
 }

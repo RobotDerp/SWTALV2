@@ -6,6 +6,7 @@ using Subject;
 
 namespace Ladeskab_Classes.Unit.Test
 {
+    [TestFixture]
     public class TestDisplaySimulator
     {
         private DisplaySimulator uut;

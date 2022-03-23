@@ -29,5 +29,20 @@ namespace Ladeskab_Classes
             
             IdCounter++;
         }
+
+        public void FakeAddLogEntry(string message, List<string> logList)
+        {
+            // Metoden er en fake og er lavet for testing-purpose
+            
+            StringBuilder logString = new StringBuilder();
+
+            logString.Append("Id: " + IdCounter + " - ");
+            logString.Append("Log time: " + DateTime.Now + " - ");
+            logString.Append("Message: " + message + "\n");
+
+            logList.Add(logString.ToString());
+
+            IdCounter++;
+        }
     }
 }
