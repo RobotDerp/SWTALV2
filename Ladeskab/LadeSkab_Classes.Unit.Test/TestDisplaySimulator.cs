@@ -32,7 +32,7 @@ namespace Ladeskab_Classes.Unit.Test
 
             // Assert
             var output = stringWriter.ToString();
-            Assert.That(output, Is.EqualTo("Charging has started \r\n"));
+            Assert.That(output, Is.EqualTo("Charging has started\r\n"));
         }
     }
 }
