@@ -86,6 +86,10 @@ namespace Ladeskab_Classes
 
         public void OnDoorChanged(DoorEventArgs e)
         {
+            if (DoorStateEvent == null)
+            {
+                throw new NullReferenceException();
+            }
             DoorStateEvent?.Invoke(this, e);
         }
 

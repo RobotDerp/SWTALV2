@@ -12,16 +12,20 @@ namespace Ladeskab_Classes.Unit.Test
         private DoorSimulator _uut;
         private DoorEventArgs _doorEventArgs;
 
+        private EventHandler<DoorEventArgs> _doorEventHandler;
+
         [SetUp]
         public void Setup()
         {
             _uut = new DoorSimulator();
             _uut.SimulateUnlocked();
 
-            _uut.DoorStateEvent += (sender, args) =>
+            _doorEventHandler = (sender, args) =>
             {
                 _doorEventArgs = args;
             };
+
+            _uut.DoorStateEvent += _doorEventHandler;
 
         }
 
@@ -136,6 +140,14 @@ namespace Ladeskab_Classes.Unit.Test
         {
             _uut = null;
             Assert.Throws<NullReferenceException>(() => _uut.OnDoorChanged(_doorEventArgs));
+        }
+
+        [Test]
+        public void bla()
+        {
+            //DoorSimulator doorWithNoSubs = new DoorSimulator();
+            _uut.DoorStateEvent -= _doorEventHandler;
+            Assert.Throws<NullReferenceException>(() => _uut.OnDoorChanged(new DoorEventArgs() {DoorState = 1}));
         }
 
     }
