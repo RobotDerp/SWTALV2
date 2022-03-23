@@ -15,14 +15,32 @@ namespace Ladeskab_Classes.Unit.Test
     {
         private StationControl _uut;
         private IDisplay _display;
+        private IDoor _door;
+        private ICharger _charger;
+        private IRFID _rfid;
 
         [SetUp]
         public void SetUp()
         {
             _display = Substitute.For<IDisplay>();
+            _door = Substitute.For<IDoor>();
+            _charger = Substitute.For<ICharger>();
+            _rfid = Substitute.For<IRFID>();
             _uut = new StationControl(_display);
         }
 
+        [Test]
+        public void ctor_StationControlIsCreated()
+        {
+            Assert.IsNotNull(_uut);
+        }
+
+        [Test]
+        public void ctor_DisplayObjectIsInjectedIntoStationControl()
+        {
+
+        }
+        
         [Test]
         public void test1()
         {

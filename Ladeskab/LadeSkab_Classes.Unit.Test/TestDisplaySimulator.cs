@@ -28,11 +28,11 @@ namespace Ladeskab_Classes.Unit.Test
             Console.SetOut(stringWriter);
 
             // Act
-            uut.Print("Charging has started \r\n");
+            uut.Print("Charging has started");
 
             // Assert
             var output = stringWriter.ToString();
-            Assert.That(output, Is.EqualTo("Charging has started \r\n"));
+            Assert.That(output, Is.EqualTo("Charging has started\r\n"));
         }
     }
 }
