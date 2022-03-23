@@ -38,7 +38,7 @@ namespace Ladeskab
         }
 
         [Test]
-        public void RFID_LadeskabStateAvailableChargerConnected_DoorLocked()
+        public void RfidDetected_LadeskabStateAvailableChargerConnected_DoorLocked()
         {
             _uut._state = StationControl.LadeskabState.Available;
             _charger.Connected.Returns(true);
@@ -48,7 +48,7 @@ namespace Ladeskab
         }
 
         [Test]
-        public void RFID_LadeskabStateAvailableChargerConnected_StartCharge()
+        public void RfidDetected_LadeskabStateAvailableChargerConnected_StartCharge()
         {
             _uut._state = StationControl.LadeskabState.Available;
             _charger.Connected.Returns(true);
@@ -58,7 +58,7 @@ namespace Ladeskab
         }
 
         [Test]
-        public void RFID_LadeskabStateAvailableChargerConnected_StateLocked()
+        public void RfidDetected_LadeskabStateAvailableChargerConnected_StateLocked()
         {
             _uut._state = StationControl.LadeskabState.Available;
             _charger.Connected.Returns(true);
@@ -68,7 +68,7 @@ namespace Ladeskab
         }
 
         [Test]
-        public void RFID_LadeskabStateAvailableChargerNotConnected_DoorUnchanged()
+        public void RfidDetected_LadeskabStateAvailableChargerNotConnected_DoorUnchanged()
         {
             _uut._state = StationControl.LadeskabState.Available;
             _charger.Connected.Returns(false);
@@ -78,7 +78,7 @@ namespace Ladeskab
         }
 
         [Test]
-        public void RFID_LadeskabStateAvailableChargerNotConnected_ChargeUnchanged()
+        public void RfidDetected_LadeskabStateAvailableChargerNotConnected_ChargeUnchanged()
         {
             _uut._state = StationControl.LadeskabState.Available;
             _charger.Connected.Returns(false);
@@ -88,7 +88,7 @@ namespace Ladeskab
         }
 
         [Test]
-        public void RFID_LadeskabStateAvailableChargerNotConnected_StateUnchanged()
+        public void RfidDetected_LadeskabStateAvailableChargerNotConnected_StateUnchanged()
         {
             _uut._state = StationControl.LadeskabState.Available;
             _charger.Connected.Returns(false);
@@ -98,7 +98,7 @@ namespace Ladeskab
         }
 
         [Test]
-        public void RFID_LadeskabStateDoorOpen_NoStateChanges()
+        public void RfidDetected_LadeskabStateDoorOpen_NoStateChanges()
         {
             _uut._state = StationControl.LadeskabState.DoorOpen;
 
@@ -108,7 +108,7 @@ namespace Ladeskab
         }
 
         [Test]
-        public void RFID_LadeskabStateLockedRFIDMatch_DoorUnlocked()
+        public void RfidDetected_LadeskabStateLockedRFIDMatch_DoorUnlocked()
         {
             _uut._state = StationControl.LadeskabState.Locked;
             _charger.Connected.Returns(true);
@@ -119,7 +119,7 @@ namespace Ladeskab
         }
 
         [Test]
-        public void RFID_LadeskabStateLockedRFIDMatch_StopCharge()
+        public void RfidDetected_LadeskabStateLockedRFIDMatch_StopCharge()
         {
             _uut._state = StationControl.LadeskabState.Locked;
             _charger.Connected.Returns(true);
@@ -130,7 +130,7 @@ namespace Ladeskab
         }
 
         [Test]
-        public void RFID_LadeskabStateAvailableRFIDMatch_StateAvailable()
+        public void RfidDetected_LadeskabStateAvailableRFIDMatch_StateAvailable()
         {
             _uut._state = StationControl.LadeskabState.Locked;
             _charger.Connected.Returns(true);
@@ -141,7 +141,7 @@ namespace Ladeskab
         }
 
         [Test]
-        public void RFID_LadeskabStateLockedWrongRFID_StopCharge()
+        public void RfidDetected_LadeskabStateLockedWrongRFID_StopCharge()
         {
             _uut._state = StationControl.LadeskabState.Locked;
             _charger.Connected.Returns(true);
@@ -153,7 +153,7 @@ namespace Ladeskab
         }
 
         [Test]
-        public void RFID_LadeskabStateAvailableWrongRFID_StateUnchanged()
+        public void RfidDetected_LadeskabStateAvailableWrongRFID_StateUnchanged()
         {
             _uut._state = StationControl.LadeskabState.Locked;
             _charger.Connected.Returns(true);
