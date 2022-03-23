@@ -34,6 +34,14 @@ namespace Ladeskab_Classes.Unit.Test
         {
             Assert.IsNotNull(_uut);
         }
+
+        [Test]
+        public void RFID_LadeskabStateAvailableChargerConnected()
+        {
+            
+            _door.LockDoor();
+            _charger.StartCharge();
+        }
         
         [Test]
         public void test1()
