@@ -28,5 +28,14 @@ namespace Ladeskab_Classes.Unit.Test
         {
             Assert.That(true, Is.EqualTo(true));
         }
+
+
+
+
+        [Test]
+        public void HandleDoorEvent()
+        {
+            Assert.That(true, Is.EqualTo(true));
+        }
     }
 }
