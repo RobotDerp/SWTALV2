@@ -143,7 +143,7 @@ namespace Ladeskab_Classes.Unit.Test
         }
 
         [Test]
-        public void bla()
+        public void OnDoorChanged_NoSubsribers_DoesntThrowAnyExceptions()
         {
             //DoorSimulator doorWithNoSubs = new DoorSimulator();
             _uut.DoorStateEvent -= _doorEventHandler;
