@@ -6,6 +6,7 @@ using System.Threading.Channels;
 using System.Threading.Tasks;
 using Ladeskab;
 using NSubstitute;
+using NSubstitute.ReceivedExtensions;
 using NUnit.Framework;
 
 namespace Ladeskab
@@ -98,13 +99,21 @@ namespace Ladeskab
         }
 
         [Test]
-        public void RfidDetected_LadeskabStateDoorOpen_NoStateChanges()
+        public void RfidDetected_LadeskabStateDoorOpen_StartChargeNotCalled()
         {
             _uut._state = StationControl.LadeskabState.DoorOpen;
 
-            _rfid.RFIDStateEvent += Raise.EventWith(new RFIDEventArgs() { RFID_ID = 22 });
-            _charger.Received(0).StartCharge();
-            _charger.Received(0).StopCharge();
+            _rfid.RFIDStateEvent += Raise.EventWith(new RFIDEventArgs() { RFID_ID = 22 }); ;
+            _charger.DidNotReceive().StartCharge();
+        }
+
+        [Test]
+        public void RfidDetected_LadeskabStateDoorOpen_StopChargeNotCalled()
+        {
+            _uut._state = StationControl.LadeskabState.DoorOpen;
+
+            _rfid.RFIDStateEvent += Raise.EventWith(new RFIDEventArgs() { RFID_ID = 22 }); ;
+            _charger.DidNotReceive().StopCharge();
         }
 
         [Test]
