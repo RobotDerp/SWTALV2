@@ -9,17 +9,10 @@ namespace Ladeskab
 {
     public class ChargeControl
     {
-        public event EventHandler<CurrentEventArgs>? CurrentValueEvent;
-
         private ICharger _usbCharger;
         private IDisplay _display;
-        public double CurrentValue
-        {
-            get { return CurrentValue;}
-            set { CurrentValue = value; }
-        }
 
-        private bool _connected = false;
+        public double CurrentValue { get; set; }
 
         // Ctor
         public ChargeControl(ICharger charger, IDisplay display)
@@ -27,7 +20,6 @@ namespace Ladeskab
             _usbCharger = charger;
             _usbCharger.CurrentValueEvent += HandleCurrentValueEvent;
             _display = display;
-            _connected = _usbCharger.Connected;
         }
         public void StartCharge()
         {
@@ -41,10 +33,10 @@ namespace Ladeskab
 
         public bool IsConnected()
         {
-            return _connected;
+            return _usbCharger.Connected;
         }
 
-        private void HandleCurrentValueEvent(object sender, CurrentEventArgs e)
+        private void HandleCurrentValueEvent(object? sender, CurrentEventArgs e)
         {
             if (e.Current > 0 && e.Current <= 5)
             {
@@ -61,8 +53,6 @@ namespace Ladeskab
             }
 
             CurrentValue = e.Current;
-            // Update connected field at each event.
-            _connected = _usbCharger.Connected;
         }
     }
 
