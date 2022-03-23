@@ -106,9 +106,32 @@ namespace Ladeskab_Classes.Unit.Test
         [Test]
         public void LockDoor_OpenDoor_ExceptionThrown()
         {
-            _uut.LocalDoorState=1;
+            _uut.LocalDoorState = 1;
             Assert.Throws<InvalidOperationException>(() => _uut.LockDoor());
         }
+
+        [Test]
+        public void UnlockDoor_OpenDoor_ExceptionThrown()
+        {
+            _uut.LocalDoorState=1;
+            Assert.Throws<InvalidOperationException>(() => _uut.UnlockDoor());
+        }
+
+        [Test]
+        public void UnlockDoor_LockedClosedDoor_DoorIsUnlocked()
+        {
+            _uut.SimulateLocked();
+            _uut.UnlockDoor();
+            Assert.That(_uut.GetLocked(), Is.EqualTo(0));
+        }
+
+        [Test]
+        public void UnlockDoor_UnlockedClosedDoor_DoorIsLocked()
+        {
+            Assert.Throws<InvalidOperationException>(() => _uut.UnlockDoor());
+        }
+
+
 
 
 

@@ -9,7 +9,7 @@ namespace Ladeskab_Classes
 {
     public class DoorSimulator : IDoor
     {
-        public event EventHandler<DoorEventArgs> DoorStateEvent;
+        public event EventHandler<DoorEventArgs>? DoorStateEvent;
 
         //locked when _locked = 1
         private int _locked;
