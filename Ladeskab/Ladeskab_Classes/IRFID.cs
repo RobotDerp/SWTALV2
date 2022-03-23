@@ -12,7 +12,5 @@ namespace Ladeskab
     {
         // Event triggered on new current value
         event EventHandler<RFIDEventArgs> RFIDStateEvent;
-
-        void RFIDDetected(int id);
     }
 }
