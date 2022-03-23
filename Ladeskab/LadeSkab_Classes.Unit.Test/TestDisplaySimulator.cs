@@ -2,7 +2,6 @@
 using System.IO;
 using Ladeskab;
 using NUnit.Framework;
-using Subject;
 
 namespace Ladeskab_Classes.Unit.Test
 {
