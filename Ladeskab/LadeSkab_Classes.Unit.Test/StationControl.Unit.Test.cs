@@ -26,7 +26,7 @@ namespace Ladeskab_Classes.Unit.Test
             _door = Substitute.For<IDoor>();
             _charger = Substitute.For<ICharger>();
             _rfid = Substitute.For<IRFID>();
-            _uut = new StationControl(_display);
+            _uut = new StationControl(_door,_display,_charger,_rfid);
         }
 
         [Test]
@@ -38,6 +38,19 @@ namespace Ladeskab_Classes.Unit.Test
         [Test]
         public void test1()
         {
+            Assert.That(true, Is.EqualTo(true));
+        }
+
+
+
+
+        [Test]
+        public void HandleDoorEvent()
+        {
+            //arrange
+            _doorEventArgs.DoorState = 1;
+
+            //
             Assert.That(true, Is.EqualTo(true));
         }
     }
