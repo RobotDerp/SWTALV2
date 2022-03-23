@@ -34,12 +34,6 @@ namespace Ladeskab_Classes.Unit.Test
         {
             Assert.IsNotNull(_uut);
         }
-
-        [Test]
-        public void ctor_DisplayObjectIsInjectedIntoStationControl()
-        {
-
-        }
         
         [Test]
         public void test1()
