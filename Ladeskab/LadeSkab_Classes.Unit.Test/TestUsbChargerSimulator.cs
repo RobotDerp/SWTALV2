@@ -26,7 +26,7 @@ namespace Ladeskab_Classes.Unit.Test
         }
 
         [Test]
-        public void ctor_CurentValueIsZero()
+        public void ctor_CurrentValueIsZero()
         {
             Assert.That(_uut.CurrentValue, Is.Zero);
         }

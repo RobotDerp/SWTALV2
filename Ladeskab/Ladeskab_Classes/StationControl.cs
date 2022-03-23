@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Channels;
 using System.Threading.Tasks;
 using Ladeskab;
-using Subject;
 using UsbSimulator;
 
 namespace Ladeskab
@@ -47,7 +46,7 @@ namespace Ladeskab
             _rfid = rfid;
         }
 
-        private void HandleDoorEvent(object sender, DoorEventArgs e)
+        public void HandleDoorEvent(object sender, DoorEventArgs e)
         {
             switch (_state)
             {
@@ -56,7 +55,6 @@ namespace Ladeskab
                     {
                         case 0:
                             throw new InvalidOperationException("Cannot close already closed door - StationControl");
-                            break;
                         case 1:
                             _display.Print("Connect phone");
                             _state = LadeskabState.DoorOpen;
@@ -70,10 +68,8 @@ namespace Ladeskab
                         case 0:
                             throw new InvalidOperationException(
                                 "Cannot close already closed and locked door - StationControl");
-                            break;
                         case 1:
                             throw new InvalidOperationException("Cannot open locked door - StationControl");
-                            break;
                     }
                     break;
                 case LadeskabState.DoorOpen:
@@ -85,7 +81,6 @@ namespace Ladeskab
                             break;
                         case 1:
                             throw new InvalidOperationException("Cannot open already open door - StationControl");
-                            break;
                     }
                     break;
             }
