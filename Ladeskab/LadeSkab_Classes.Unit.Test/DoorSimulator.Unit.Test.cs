@@ -131,6 +131,12 @@ namespace Ladeskab_Classes.Unit.Test
             Assert.Throws<InvalidOperationException>(() => _uut.UnlockDoor());
         }
 
+        [Test]
+        public void OnDoorChanged_NoEventObject_NullExceptionThrown()
+        {
+            _uut = null;
+            Assert.Throws<NullReferenceException>(() => _uut.OnDoorChanged(_doorEventArgs));
+        }
 
 
 
