@@ -19,7 +19,6 @@ namespace Ladeskab
         private IDoor _door;
         private ICharger _charger;
         private IRFID _rfid;
-        private int _oldID;
 
         [SetUp]
         public void SetUp()
@@ -112,7 +111,7 @@ namespace Ladeskab
         {
             _uut._state = StationControl.LadeskabState.Locked;
             _charger.Connected.Returns(true);
-            _oldID = 22;
+            _uut._oldId = 22;
 
             _rfid.RFIDStateEvent += Raise.EventWith(new RFIDEventArgs() { RFID_ID = 22 });
             _door.Received(1).UnlockDoor();
@@ -123,7 +122,7 @@ namespace Ladeskab
         {
             _uut._state = StationControl.LadeskabState.Locked;
             _charger.Connected.Returns(true);
-            _oldID = 22;
+            _uut._oldId = 22;
 
             _rfid.RFIDStateEvent += Raise.EventWith(new RFIDEventArgs() { RFID_ID = 22 });
             _charger.Received(1).StopCharge();
@@ -134,7 +133,7 @@ namespace Ladeskab
         {
             _uut._state = StationControl.LadeskabState.Locked;
             _charger.Connected.Returns(true);
-            _oldID = 22;
+            _uut._oldId = 22;
 
             _rfid.RFIDStateEvent += Raise.EventWith(new RFIDEventArgs() { RFID_ID = 22 });
             Assert.That(_uut._state, Is.EqualTo(StationControl.LadeskabState.Available));
@@ -145,7 +144,7 @@ namespace Ladeskab
         {
             _uut._state = StationControl.LadeskabState.Locked;
             _charger.Connected.Returns(true);
-            _oldID = 10;
+            _uut._oldId = 10;
 
             _rfid.RFIDStateEvent += Raise.EventWith(new RFIDEventArgs() { RFID_ID = 22 });
             _charger.Received(0).StopCharge();
@@ -157,20 +156,11 @@ namespace Ladeskab
         {
             _uut._state = StationControl.LadeskabState.Locked;
             _charger.Connected.Returns(true);
-            _oldID = 10;
+            _uut._oldId = 10;
 
             _rfid.RFIDStateEvent += Raise.EventWith(new RFIDEventArgs() { RFID_ID = 22 });
             Assert.That(_uut._state, Is.EqualTo(StationControl.LadeskabState.Locked));
         }
-
-        [Test]
-        public void test1()
-        {
-            Assert.That(true, Is.EqualTo(true));
-        }
-
-
-
 
         [Test]
         public void HandleDoorEvent_StateAvailableDoorEvent0_ThrowsException()
