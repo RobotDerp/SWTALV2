@@ -20,7 +20,6 @@ namespace Ladeskab
         private ICharger _charger;
         private IRFID _rfid;
         private int _oldID;
-        private LadeskabState _state;
 
         [SetUp]
         public void SetUp()
@@ -41,7 +40,7 @@ namespace Ladeskab
         [Test]
         public void RFID_LadeskabStateAvailableChargerConnected_DoorLocked()
         {
-            _state = LadeskabState.Available;
+            _uut._state = StationControl.LadeskabState.Available;
             _charger.Connected.Returns(true);
 
             _rfid.RFIDStateEvent += Raise.EventWith(new RFIDEventArgs() { RFID_ID = 22 } );
@@ -51,7 +50,7 @@ namespace Ladeskab
         [Test]
         public void RFID_LadeskabStateAvailableChargerConnected_StartCharge()
         {
-            _state = LadeskabState.Available;
+            _uut._state = StationControl.LadeskabState.Available;
             _charger.Connected.Returns(true);
 
             _rfid.RFIDStateEvent += Raise.EventWith(new RFIDEventArgs() { RFID_ID = 22 });
@@ -61,17 +60,17 @@ namespace Ladeskab
         [Test]
         public void RFID_LadeskabStateAvailableChargerConnected_StateLocked()
         {
-            _state = LadeskabState.Available;
+            _uut._state = StationControl.LadeskabState.Available;
             _charger.Connected.Returns(true);
 
             _rfid.RFIDStateEvent += Raise.EventWith(new RFIDEventArgs() { RFID_ID = 22 });
-            Assert.That(_state, Is.EqualTo(LadeskabState.Locked));
+            Assert.That(_uut._state, Is.EqualTo(StationControl.LadeskabState.Locked));
         }
 
         [Test]
         public void RFID_LadeskabStateAvailableChargerNotConnected_DoorUnchanged()
         {
-            _state = LadeskabState.Available;
+            _uut._state = StationControl.LadeskabState.Available;
             _charger.Connected.Returns(false);
 
             _rfid.RFIDStateEvent += Raise.EventWith(new RFIDEventArgs() { RFID_ID = 22 });
@@ -81,7 +80,7 @@ namespace Ladeskab
         [Test]
         public void RFID_LadeskabStateAvailableChargerNotConnected_ChargeUnchanged()
         {
-            _state = LadeskabState.Available;
+            _uut._state = StationControl.LadeskabState.Available;
             _charger.Connected.Returns(false);
 
             _rfid.RFIDStateEvent += Raise.EventWith(new RFIDEventArgs() { RFID_ID = 22 });
@@ -91,17 +90,17 @@ namespace Ladeskab
         [Test]
         public void RFID_LadeskabStateAvailableChargerNotConnected_StateUnchanged()
         {
-            _state = LadeskabState.Available;
+            _uut._state = StationControl.LadeskabState.Available;
             _charger.Connected.Returns(false);
 
             _rfid.RFIDStateEvent += Raise.EventWith(new RFIDEventArgs() { RFID_ID = 22 });
-            Assert.That(_state, Is.EqualTo(LadeskabState.Available));
+            Assert.That(_uut._state, Is.EqualTo(StationControl.LadeskabState.Available));
         }
 
         [Test]
         public void RFID_LadeskabStateDoorOpen_NoStateChanges()
         {
-            _state = LadeskabState.DoorOpen;
+            _uut._state = StationControl.LadeskabState.DoorOpen;
 
             _rfid.RFIDStateEvent += Raise.EventWith(new RFIDEventArgs() { RFID_ID = 22 });
             _charger.Received(0).StartCharge();
@@ -111,7 +110,7 @@ namespace Ladeskab
         [Test]
         public void RFID_LadeskabStateLockedRFIDMatch_DoorUnlocked()
         {
-            _state = LadeskabState.Locked;
+            _uut._state = StationControl.LadeskabState.Locked;
             _charger.Connected.Returns(true);
             _oldID = 22;
 
@@ -122,7 +121,7 @@ namespace Ladeskab
         [Test]
         public void RFID_LadeskabStateLockedRFIDMatch_StopCharge()
         {
-            _state = LadeskabState.Locked;
+            _uut._state = StationControl.LadeskabState.Locked;
             _charger.Connected.Returns(true);
             _oldID = 22;
 
@@ -133,18 +132,18 @@ namespace Ladeskab
         [Test]
         public void RFID_LadeskabStateAvailableRFIDMatch_StateAvailable()
         {
-            _state = LadeskabState.Locked;
+            _uut._state = StationControl.LadeskabState.Locked;
             _charger.Connected.Returns(true);
             _oldID = 22;
 
             _rfid.RFIDStateEvent += Raise.EventWith(new RFIDEventArgs() { RFID_ID = 22 });
-            Assert.That(_state, Is.EqualTo(LadeskabState.Available));
+            Assert.That(_uut._state, Is.EqualTo(StationControl.LadeskabState.Available));
         }
 
         [Test]
         public void RFID_LadeskabStateLockedWrongRFID_StopCharge()
         {
-            _state = LadeskabState.Locked;
+            _uut._state = StationControl.LadeskabState.Locked;
             _charger.Connected.Returns(true);
             _oldID = 10;
 
@@ -156,12 +155,12 @@ namespace Ladeskab
         [Test]
         public void RFID_LadeskabStateAvailableWrongRFID_StateUnchanged()
         {
-            _state = LadeskabState.Locked;
+            _uut._state = StationControl.LadeskabState.Locked;
             _charger.Connected.Returns(true);
             _oldID = 10;
 
             _rfid.RFIDStateEvent += Raise.EventWith(new RFIDEventArgs() { RFID_ID = 22 });
-            Assert.That(_state, Is.EqualTo(LadeskabState.Locked));
+            Assert.That(_uut._state, Is.EqualTo(StationControl.LadeskabState.Locked));
         }
 
         [Test]
