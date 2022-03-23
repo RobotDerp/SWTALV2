@@ -242,6 +242,5 @@ namespace Ladeskab
 
             Assert.Throws<InvalidOperationException>(() => _door.DoorStateEvent += Raise.EventWith(new DoorEventArgs() { DoorState = 1 }));
         }
-
     }
 }
