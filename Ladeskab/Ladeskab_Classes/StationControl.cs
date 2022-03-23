@@ -25,7 +25,7 @@ namespace Ladeskab
         // Her mangler flere member variable
         private IDisplay iDisplay;
         public LadeskabState _state;
-        private int _oldId;
+        public int _oldId;
         private IDoor _door;
         private IDisplay _display;
         private ICharger _charger;
