@@ -3,7 +3,7 @@ using System.IO;
 using Ladeskab;
 using NSubstitute;
 using NUnit.Framework;
-using UsbSimulator;
+
 
 namespace Ladeskab_Classes.Unit.Test
 {

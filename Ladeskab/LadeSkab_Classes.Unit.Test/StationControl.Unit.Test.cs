@@ -61,23 +61,29 @@ namespace Ladeskab_Classes.Unit.Test
 
 
         [Test]
-        public void HandleDoorEvent_StateAvailableDoorEvent0_()
+        public void HandleDoorEvent_StateAvailableDoorEvent0_ThrowsException()
         {
-            //arrange
             _state = LadeskabState.Available;
-            _door.DoorStateEvent += Raise.EventWith(new DoorEventArgs() { DoorState = 0 });
 
-            _uut.HandleDoorEvent(_door,DoorEventArgs);
-            Assert.That(true, Is.EqualTo(true));
+           Assert.Throws<InvalidOperationException>(() => _door.DoorStateEvent += Raise.EventWith(new DoorEventArgs() { DoorState = 0 }));
         }
 
         [Test]
-        public void HandleDoorEvent_StateAvailableDoorEvent1_()
+        public void HandleDoorEvent_StateAvailableDoorEvent1_DisplayPrintCalled()
         {
-            //arrange
             _state = LadeskabState.Available;
+            _door.DoorStateEvent += Raise.EventWith(new DoorEventArgs() {DoorState = 1});
 
-            Assert.That(true, Is.EqualTo(true));
+            _display.Received(1).Print("Connect phone");
+        }
+
+        [Test]
+        public void HandleDoorEvent_StateAvailableDoorEvent1_StateNowLocked()
+        {
+            _state = LadeskabState.Available;
+            _door.DoorStateEvent += Raise.EventWith(new DoorEventArgs() { DoorState = 1 });
+
+            _display.Received(1).Print("Connect phone");
         }
 
         [Test]
