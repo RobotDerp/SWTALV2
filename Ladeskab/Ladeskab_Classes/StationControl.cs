@@ -101,12 +101,12 @@ namespace Ladeskab
                             writer.WriteLine(DateTime.Now + ": Skab låst med RFID: {0}", e.RFID_ID);
                         }
 
-                        iDisplay.Print("Skabet er låst og din telefon lades.Brug dit RFID tag til at låse op.");
+                        _display.Print("Skabet er låst og din telefon lades.Brug dit RFID tag til at låse op.");
                         _state = LadeskabState.Locked;
                     }
                     else
                     {
-                        iDisplay.Print("Din telefon er ikke ordentlig tilsluttet. Prøv igen.");
+                        _display.Print("Din telefon er ikke ordentlig tilsluttet. Prøv igen.");
                     }
 
                     break;
@@ -126,12 +126,12 @@ namespace Ladeskab
                             writer.WriteLine(DateTime.Now + ": Skab låst op med RFID: {0}", e.RFID_ID);
                         }
 
-                        iDisplay.Print("Tag din telefon ud af skabet og luk døren");
+                        _display.Print("Tag din telefon ud af skabet og luk døren");
                         _state = LadeskabState.Available;
                     }
                     else
                     {
-                        iDisplay.Print("Forkert RFID tag");
+                        _display.Print("Forkert RFID tag");
                     }
 
                     break;
