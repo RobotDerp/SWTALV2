@@ -9,15 +9,13 @@ using Ladeskab;
 
 namespace Ladeskab
 {
+
+
     public class StationControl
     {
-        public StationControl(IDisplay Display)
-        {
-            iDisplay = Display;
-        }
 
         // Enum med tilstande ("states") svarende til tilstandsdiagrammet for klassen
-        private enum LadeskabState
+        public enum LadeskabState
         {
             Available,
             Locked,
@@ -26,7 +24,7 @@ namespace Ladeskab
 
         // Her mangler flere member variable
         private IDisplay iDisplay;
-        private LadeskabState _state;
+        public LadeskabState _state;
         private int _oldId;
         private IDoor _door;
         private IDisplay _display;
