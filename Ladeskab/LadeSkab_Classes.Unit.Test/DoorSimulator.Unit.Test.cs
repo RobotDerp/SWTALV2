@@ -136,13 +136,6 @@ namespace Ladeskab_Classes.Unit.Test
         }
 
         [Test]
-        public void OnDoorChanged_NoEventObject_NullExceptionThrown()
-        {
-            _uut = null;
-            Assert.Throws<NullReferenceException>(() => _uut.OnDoorChanged(_doorEventArgs));
-        }
-
-        [Test]
         public void OnDoorChanged_NoSubsribers_DoesntThrowAnyExceptions()
         {
             //DoorSimulator doorWithNoSubs = new DoorSimulator();
